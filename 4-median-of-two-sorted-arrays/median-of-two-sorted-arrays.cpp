@@ -11,7 +11,7 @@ public:
             return result;
         }
         else{
-            int result=num1[(n/2)+0.5];
+            int result=num1[(n/2)];
             return result;
         }
         return -1;
