@@ -15,7 +15,7 @@ public:
             return result;
         }
         else{
-            double result=(double)answer[(n/2)+0.5];
+            int result=answer[(n/2)+0.5];
             return result;
         }
         return -1;
