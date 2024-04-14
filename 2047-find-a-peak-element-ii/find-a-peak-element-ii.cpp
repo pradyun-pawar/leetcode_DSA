@@ -7,7 +7,6 @@ public:
         int low = 0;
         int high = n - 1;
         int maxRow = -1;
-        int peakColumn = -1;
         int first=0;
 
         while (low <= high) {
