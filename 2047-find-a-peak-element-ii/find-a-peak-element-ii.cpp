@@ -19,30 +19,16 @@ public:
                     first = i; 
                 }
             }
-
             if (mid > 0 && mat[first][mid - 1] > maxRow) {
                 high = mid - 1;
             } else if (mid < n - 1 && mat[first][mid + 1] > maxRow) {
                 low = mid + 1; 
             } else {
-                // peakColumn = mid;
-                // break;
                 if(mat[first][mid]>-1){
                     return {first,mid};
                 }
             }
         }
-
-        // if (peakColumn != -1) {
-        //     maxRow = -1;
-        //     for (int i = 0; i < m; i++) {
-        //         if (mat[i][peakColumn] > maxRow) {
-        //             maxRow = mat[i][peakColumn];
-        //             first = i;
-        //         }
-        //     }
-        //     return {first, peakColumn};
-        // }
         return {-1, -1};
     }
 };
