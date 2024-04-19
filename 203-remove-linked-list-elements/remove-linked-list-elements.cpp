@@ -20,7 +20,7 @@ public:
 
         ListNode* temp = head;
         ListNode* previous = nullptr;
-        while (temp != nullptr) {
+        while (temp != NULL) {
             if (temp->val == val) {
                 ListNode* current = temp;
                 if (previous != nullptr) {
