@@ -21,21 +21,21 @@ public:
             temp=temp->next;
         }
         int answer=counter-n+1;
-        int cnt=0;
-        ListNode* current=head;
+        counter=0;
+        temp=head;
         ListNode* previous=nullptr;
         if(answer==1){
             head=head->next;
             return head;
         }
-        while(current!=NULL){
-            cnt++;
-            if(cnt==answer){
+        while(temp!=NULL){
+            counter++;
+            if(counter==answer){
                 previous->next=previous->next->next;
                 break;
             }
-            previous=current;
-            current=current->next;
+            previous=temp;
+            temp=temp->next;
         }
         return head;
     }
