@@ -24,12 +24,7 @@ public:
         if(count==1){
             return head;
         }
-        if(count%2==0){
-            answer=(count/2)+1;
-        }
-        else{
-            answer=(count+1)/2;
-        }
+        answer=(count/2)+1;
         count=0;
         while(head!=NULL){
             count++;
