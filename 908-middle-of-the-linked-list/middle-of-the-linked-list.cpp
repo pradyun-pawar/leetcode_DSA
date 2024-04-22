@@ -14,25 +14,13 @@ public:
         if(head==NULL){
             return head;
         }
-        ListNode* temp=head;
-        int count=0;
-        int answer=0;
-        while(temp!=NULL){
-            count++;
-            temp=temp->next;
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        if(count==1){
-            return head;
-        }
-        answer=(count/2)+1;
-        count=0;
-        while(head!=NULL){
-            count++;
-            if(count==answer){
-                return head;
-            }
-            head=head->next;
-        }
-        return head;
+        return slow;
+
     }
 };
