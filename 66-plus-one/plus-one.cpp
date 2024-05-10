@@ -11,8 +11,7 @@ public:
                     v[i-1]++;
                 }
                 else{
-                    v.insert(v.begin(), 1); // Insert 1 at the beginning
-                    v[i] = 1;
+                    v.insert(v.begin(),1);
                 }
             }
         }
