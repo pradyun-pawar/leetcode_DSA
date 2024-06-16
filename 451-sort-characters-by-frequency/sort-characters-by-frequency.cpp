@@ -1,25 +1,28 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        map<char,int> mpp;
-        priority_queue<pair<int,char>> st;
-        int maxi=0; 
-
-        for(int i=0; i<s.size(); i++){
-            mpp[s[i]]++;
+        unordered_map<char,int> mp;
+        priority_queue<pair<int,char>>pq;
+        
+		//enter all the character frequency in hashmap
+		for(int i=0;i<s.size();i++){
+            mp[s[i]]++;
+        }
+		
+		//sort the characters based on the frequency 
+        for(auto i:mp){
+            pq.push(make_pair(i.second,i.first));
         }
         string ans="";
-        for(auto it:mpp){
-            st.push({it.second,it.first});
-        }
-        while(!st.empty()){
-            int a=st.top().first;
-            char b=st.top().second;
+   
+		while(!pq.empty()){
+            int a=pq.top().first;
+            char b=pq.top().second;
             for(int i=0;i<a;i++){
                 ans+=b;
             }
-            st.pop();
+            pq.pop();
         }
-        return ans;        
+        return ans;
     }
 };
