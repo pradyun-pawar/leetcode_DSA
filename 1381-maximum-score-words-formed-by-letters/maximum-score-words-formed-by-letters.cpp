@@ -1,40 +1,57 @@
 class Solution {
 public:
     int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
-        // Create a frequency map for letters
-        unordered_map<char, int> letterCount;
-        for (char letter : letters) {
-            ++letterCount[letter];
+        int W = words.size();
+        maxScore = 0;
+        freq = vector<int>(26, 0);
+        vector<int> subsetLetters = vector<int>(26, 0);
+        // Count how many times each letter occurs
+        for (char c : letters) {
+            freq[c - 'a']++;
         }
-        
-        // Helper function to calculate the score of a word
-        auto calculateWordScore = [&](const string& word) -> int {
-            int wordScore = 0;
-            unordered_map<char, int> tempCount = letterCount;
-            for (char c : word) {
-                if (tempCount[c] > 0) {
-                    wordScore += score[c - 'a'];
-                    --tempCount[c];
-                } else {
-                    return 0; // Word cannot be formed
-                }
-            }
-            return wordScore;
-        };
-        
-        // Generate all subsets of words
-        int n = words.size();
-        int maxScore = 0;
-        for (int mask = 0; mask < (1 << n); ++mask) {
-            string combinedWord = "";
-            for (int i = 0; i < n; ++i) {
-                if (mask & (1 << i)) {
-                    combinedWord += words[i];
-                }
-            }
-            maxScore = max(maxScore, calculateWordScore(combinedWord));
-        }
-        
+        check(W - 1, words, score, subsetLetters, 0);
         return maxScore;
+    }
+
+private:
+    int maxScore;
+    vector<int> freq;
+
+    // Check if adding this word exceeds the frequency of any letter
+    bool isValidWord(vector<int>& subsetLetters) {
+        for (int c = 0; c < 26; c++) {
+            if (freq[c] < subsetLetters[c]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void check(int w, vector<string>& words, vector<int>& score, vector<int>& subsetLetters, int totalScore) {
+        if (w == -1) {
+            // If all words have been iterated, check the score of this subset
+            maxScore = max(maxScore, totalScore);
+            return;
+        }
+        // Not adding words[w] to the current subset
+        check(w - 1, words, score, subsetLetters, totalScore);
+        // Adding words[w] to the current subset
+        int L = words[w].length();
+        for (int i = 0; i < L; i++) {
+            int c = words[w][i] - 'a';
+            subsetLetters[c]++;
+            totalScore += score[c];
+        }
+
+        if (isValidWord(subsetLetters)) {
+            // Consider the next word if this subset is still valid
+            check(w - 1, words, score, subsetLetters, totalScore);
+        }
+        // Rollback effects of this word
+        for (int i = 0; i < L; i++) {
+            int c = words[w][i] - 'a';
+            subsetLetters[c]--;
+            totalScore -= score[c];
+        }
     }
 };
