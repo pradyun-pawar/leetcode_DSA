@@ -1,14 +1,14 @@
 class Solution {
 public:
-    bool equalFrequency(std::string word) {
-        std::map<char, int> freq;
+    bool equalFrequency(string word) {
+        map<char, int> freq;
         
         // Count frequencies of each character
         for (char c : word) {
             freq[c]++;
         }
 
-        std::map<int, int> freqCount;
+        map<int, int> freqCount;
         
         // Count frequencies of the frequencies
         for (const auto &p : freq) {
