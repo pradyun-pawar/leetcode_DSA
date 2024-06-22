@@ -6,15 +6,10 @@ public:
         int mini = INT_MAX;
         int maxi = INT_MIN;
 
-        // Outer loop to select the starting point of substrings
         for (int i = 0; i < s.size(); ++i) {
-            mpp.clear();  // Clear the frequency map for each new starting point
-            
-            // Inner loop to select the ending point of substrings
+            mpp.clear();  
             for (int j = i; j < s.size(); ++j) {
-                mpp[s[j]]++;  // Update frequency map for the current substring
-                
-                // Find the maximum and minimum frequencies in the current substring
+                mpp[s[j]]++;  
                 int one = INT_MAX;
                 int two = INT_MIN;
                 for (auto it : mpp) {
@@ -24,11 +19,9 @@ public:
                     }
                 }
                 
-                // Calculate the beauty of the current substring and add it to the sum
                 sum += (two - one);
             }
         }
-
         return sum;
     }
 };
