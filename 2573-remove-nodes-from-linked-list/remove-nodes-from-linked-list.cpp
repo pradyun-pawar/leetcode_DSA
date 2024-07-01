@@ -1,25 +1,23 @@
 class Solution {
 public:
     ListNode* removeNodes(ListNode* head) {
-        ListNode* cur = head;
-        stack<ListNode*> stack;
-        
-        while (cur != nullptr) {
-            while (!stack.empty() && stack.top()->val < cur->val) {
-                stack.pop();
+        ListNode* current=head;
+        ListNode* nothing= nullptr;
+        stack<ListNode*> st;
+
+        while(current!=NULL){
+            while(!st.empty() && st.top()->val < current->val){
+                st.pop();
             }
-            stack.push(cur);
-            cur = cur->next;
+            st.push(current);
+            current=current->next;
         }
-        
-        ListNode* nxt = nullptr;
-        while (!stack.empty()) {
-            cur = stack.top();
-            stack.pop();
-            cur->next = nxt;
-            nxt = cur;
+        while(!st.empty()){
+            current=st.top();
+            st.pop();
+            current->next=nothing;
+            nothing=current;
         }
-        
-        return cur;
+        return current;
     }
 };
