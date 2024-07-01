@@ -18,19 +18,15 @@ public:
             op1= op1 + ')';
             solve(op1, open, close-1, ans);
         }
-        else if(close == 0){
-            //only choise is to use open bracket 
-            string op1 = op;
-            op1.push_back('(');
-            solve(op1, open-1, close, ans);
-        }
         else{
             string op1 = op;
             string op2 = op;
             op1.push_back('(');
             op2.push_back(')');
             solve(op1, open-1, close, ans);
-            solve(op2, open, close-1, ans);
+            if(close>=open){
+                solve(op2, open, close-1, ans);
+            }
         }
     }
     vector<string> generateParenthesis(int n) {
