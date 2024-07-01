@@ -9,13 +9,13 @@ public:
         //we have only one choice to put open bracket 
         if(open == close){
             string op1 = op;
-            op1.push_back('(');
+            op1= op1 + '(';
             solve(op1, open-1, close, ans);
         }
         else if(open == 0){
             //only choice is to put close brackets 
             string op1 = op;
-            op1.push_back(')');
+            op1= op1 + ')';
             solve(op1, open, close-1, ans);
         }
         else if(close == 0){
