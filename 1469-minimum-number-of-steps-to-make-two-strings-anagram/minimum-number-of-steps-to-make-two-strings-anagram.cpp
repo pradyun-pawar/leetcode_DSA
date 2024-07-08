@@ -21,10 +21,10 @@ public:
                     }
                 }
                 
-                // else if(it->first > t[i]){
-                //     answer++;
-                //     break;
-                // }
+                else if(it->first > t[i]){
+                    answer++;
+                    break;
+                }
                 it++;
             }
             if(it==mpp.end()){
