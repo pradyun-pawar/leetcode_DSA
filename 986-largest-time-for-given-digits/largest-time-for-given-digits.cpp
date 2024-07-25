@@ -1,6 +1,6 @@
 class Solution {
 public:
-    std::string largestTimeFromDigits(std::vector<int>& arr) {
+    string largestTimeFromDigits(std::vector<int>& arr) {
         sort(arr.begin(), arr.end());
         std::string answer = "";
 
